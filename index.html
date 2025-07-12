@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>E-Learning Platform UI</title>
+
+  <!-- Font Awesome for icons -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --primary: #0d47a1;
+      --secondary: #1976d2;
+      --accent: #ffc107;
+      --bg-light: #f5f5f5;
+      --bg-dark: #121212;
+      --text-light: #ffffff;
+      --text-dark: #333333;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      margin: 0;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    header {
+      background-color: var(--primary);
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .toggle-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--accent);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    nav {
+      background: var(--secondary);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0.8rem;
+    }
+
+    nav button {
+      background: transparent;
+      border: none;
+      color: white;
+      font-weight: bold;
+      margin: 0 15px;
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    nav button:hover {
+      color: var(--accent);
+    }
+
+    section {
+      display: none;
+      padding: 2rem;
+      max-width: 900px;
+      margin: 1.5rem auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    body.dark-mode section {
+      background: #1e1e1e;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    h2, h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    body.dark-mode h2,
+    body.dark-mode h3 {
+      color: var(--accent);
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    video {
+      margin-top: 1rem;
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    img.course-image {
+      max-width: 100%;
+      margin: 1rem 0;
+      border-radius: 10px;
+    }
+
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+      }
+
+      nav button {
+        margin: 10px 0;
+      }
+
+      section {
+        padding: 1rem;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1><i class="fas fa-graduation-cap"></i> E-Learning Platform</h1>
+    <p>Learn Anywhere. Grow Everywhere.</p>
+    <button class="toggle-btn" onclick="toggleMode()">🌙 Dark Mode</button>
+  </header>
+
+  <nav>
+    <button onclick="showPage('home')"><i class="fas fa-home"></i> Home</button>
+    <button onclick="showPage('courses')"><i class="fas fa-book-open"></i> Courses</button>
+    <button onclick="showPage('progress')"><i class="fas fa-chart-line"></i> Progress</button>
+  </nav>
+
+  <!-- Home -->
+  <section id="home" class="active">
+    <h2>Welcome to E-Learn</h2>
+    <p>This is an interactive, stylish front-end project for an e-learning platform. It includes course listings, progress tracking, dark mode, and videos—all in one file!</p>
+    <img class="course-image" src="https://source.unsplash.com/900x300/?online,learning" alt="Learning Banner" />
+  </section>
+
+  <!-- Courses -->
+  <section id="courses">
+    <h2>Our Courses</h2>
+    <ul>
+      <li><i class="fas fa-check-circle"></i> HTML Basics</li>
+      <li><i class="fas fa-check-circle"></i> CSS Flexbox & Grid</li>
+      <li><i class="fas fa-check-circle"></i> JavaScript Essentials</li>
+      <li><i class="fas fa-check-circle"></i> React Basics</li>
+    </ul>
+    <img class="course-image" src="https://source.unsplash.com/900x300/?programming,code" alt="Course Image" />
+  </section>
+
+  <!-- Progress -->
+  <section id="progress">
+    <h2>Your Progress</h2>
+    <ul>
+      <li><i class="fas fa-circle-check"></i> HTML – 100%</li>
+      <li><i class="fas fa-spinner fa-spin"></i> CSS – 80%</li>
+      <li><i class="fas fa-spinner fa-spin"></i> JavaScript – 50%</li>
+    </ul>
+
+    <h3>Sample Course Video</h3>
+    <video controls>
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </section>
+
+  <footer>
+    <p>© 2025 E-Learn | Built by Rizla for CodTech Internship</p>
+  </footer>
+
+  <script>
+    function showPage(id) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+
+    function toggleMode() {
+      document.body.classList.toggle("dark-mode");
+      const btn = document.querySelector('.toggle-btn');
+      if (document.body.classList.contains("dark-mode")) {
+        btn.textContent = "☀️ Light Mode";
+      } else {
+        btn.textContent = "🌙 Dark Mode";
+      }
+    }
+  </script>
+
+</body>
+</html>
